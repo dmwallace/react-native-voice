@@ -59,16 +59,16 @@
         }
         
         NSError* audioSessionError = nil;
-        [self.audioSession setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionMixWithOthers error:&audioSessionError];
-        
+        //[self.audioSession setCategory:AVAudioSessionCategoryPlayAndRecord withOptions:AVAudioSessionCategoryOptionDefaultToSpeaker error:&audioSessionError];
+
         if (audioSessionError != nil) {
             [self sendResult:@{@"code": @"audio", @"message": [audioSessionError localizedDescription]} :nil :nil :nil];
             return NO;
         }
-        
+
         // Activate the audio session
         [self.audioSession setActive:YES withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:&audioSessionError];
-        
+
         if (audioSessionError != nil) {
             [self sendResult:@{@"code": @"audio", @"message": [audioSessionError localizedDescription]} :nil :nil :nil];
             return NO;
@@ -79,7 +79,7 @@
         [self sendResult:@{@"code": @"audio", @"message": [exception reason]} :nil :nil :nil];
         return NO;
     } @finally {}
-    
+
 }
 
 -(NSURL *)applicationDocumentsDirectory {
