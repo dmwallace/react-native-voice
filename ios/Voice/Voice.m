@@ -280,7 +280,7 @@
     }
     
     // Set back audio session category
-    [self resetAudioSession];
+    //[self resetAudioSession];
     
     // End recognition request
     if (self.recognitionRequest) {
